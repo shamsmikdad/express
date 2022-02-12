@@ -1,7 +1,8 @@
 const express = require ("express")
 const app = express()
 const mongoose = require ("mongoose")
-const path = require ("path")
+const path = require ("path");
+const connectDB = require("./db/connect");
 require('dotenv').config();
 
 // const connectDB = require('./connect');
@@ -13,20 +14,17 @@ app.use(express.json());
 // app.use(express.static(path.join(__dirname,'public',)))
 
 //config  DB
-    //const db = require("./db/URI").mongoURI
-    const db = process.env.mongoURI
-//connect db
+const db = process.env.mongoURI
 
+
+
+
+//connect db and start server
 const port = process.env.PORT || 3000;
-
-//app.listen(port,()=>console.log(`listen on port ${port}`))
 
 const start = async () => {
     try {
-      await mongoose
-        .connect(db)
-        .then(()=>{console.log("connect to db ")})
-        .catch(err => {console.log(err)});
+      await connectDB(db)
       app.listen(port, () =>
         console.log(`Server is listening on port ${port}...`)
       );
@@ -36,4 +34,6 @@ const start = async () => {
   };
   
   start();
+  //app.listen(port,()=>console.log(`listen on port ${port}`))
+
   
