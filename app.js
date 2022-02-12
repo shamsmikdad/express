@@ -13,7 +13,9 @@ app.use(express.json());
 //static path
 // app.use(express.static(path.join(__dirname,'public',)))
 
-//config  DB
+/* config  DB 
+form the .env file set the connection string for the mongobd database 
+need to install the "dotenv" dep and invock it */
 const db = process.env.mongoURI
 
 
@@ -21,7 +23,7 @@ const db = process.env.mongoURI
 
 //connect db and start server
 const port = process.env.PORT || 3000;
-
+//from the db folder/connect.js file have the connection function
 const start = async () => {
     try {
       await connectDB(db)
@@ -34,6 +36,8 @@ const start = async () => {
   };
   
   start();
+
+  
   //app.listen(port,()=>console.log(`listen on port ${port}`))
 
   
