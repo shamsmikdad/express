@@ -2,6 +2,8 @@ const express = require ("express")
 const app = express()
 const mongoose = require ("mongoose")
 const path = require ("path")
+require('dotenv').config();
+
 // const connectDB = require('./connect');
 
 app.use(express.json());
@@ -11,7 +13,8 @@ app.use(express.json());
 // app.use(express.static(path.join(__dirname,'public',)))
 
 //config  DB
-const db = require("./db/URI").mongoURI
+    //const db = require("./db/URI").mongoURI
+    const db = process.env.mongoURI
 //connect db
 
 const port = process.env.PORT || 3000;
